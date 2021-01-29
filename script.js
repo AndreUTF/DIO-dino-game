@@ -1,11 +1,12 @@
 //Create constatnts that are essential to the game
 const dino = document.querySelector('.dino');
 const background = document.querySelector('.background');
+const score = document.querySelector('.score');
 
 //Create the jumping indicar variable and the dino position variable
 let isJumping = false;
 var position = 0;
-
+var scoreCounter = 0;
 //For debug purposes
 //console.log(dino);
 
@@ -28,13 +29,14 @@ function jump() {
         if (position >= 150) {
             //Subindo
             clearInterval(upInterval);
-
             //Descendo
             let downInterval = setInterval(() => {
                 dino.style.bottom = position + 'px';
                 if (position <= 0) {
                     clearInterval(downInterval);
                     isJumping = false;
+                    scoreCounter++;
+                    score.innerHTML = scoreCounter;
                 } else {
                     position -= 20;
                     dino.style.bottom = position + 'px';
